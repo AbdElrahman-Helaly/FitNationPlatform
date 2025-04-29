@@ -1,0 +1,6 @@
+@FitNation.API_HostAddress = http://localhost:5190
+
+GET {{FitNation.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
