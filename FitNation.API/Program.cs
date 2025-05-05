@@ -1,22 +1,52 @@
 using FitNation.Core.Interfaces.Services;
 using FitNation.Core.Settings;
-using FitNation.Infrastrucure.Data;
-using FitNation.Infrastrucure.Services;
+using FitNation.Infrastrucur.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using AspNetCore.Scalar;
+using Scalar.AspNetCore;
+using FluentValidation;
+using FitNation.Core.DTOS;
+using FitNation.Core.Validators;
+using FitNation.Services.UserServices;
+
+
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddEndpointsApiExplorer();
+
+
+
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbcontext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IAuthenServices, AuthenService>();
+
+
+builder.Services.AddScoped<IValidator<RegisterReqDto>, CreateUserValidator>();
+builder.Services.AddScoped<IValidator<LoginReqDTO>, LoginUserValiddator>();
+
+
+
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
-builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -39,19 +69,32 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitNation API", Version = "v1" });
+});
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.MapControllers();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
+    app.UseScalar();
 }
+
+
 
 app.UseHttpsRedirection();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 
