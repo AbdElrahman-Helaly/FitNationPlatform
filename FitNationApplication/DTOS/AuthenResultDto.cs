@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FitNation.Core.DTOS
+namespace FitNationApplication.DTOS
 {
     public class AuthenResultDto
     {

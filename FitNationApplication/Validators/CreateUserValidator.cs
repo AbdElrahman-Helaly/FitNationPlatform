@@ -1,19 +1,21 @@
-﻿using FitNation.Core.DTOS;
+﻿
+using FitNationApplication.DTOS;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FitNation.Core.Validators
+namespace FitNationApplication.Validators
 {
-    public class LoginUserValiddator : AbstractValidator<LoginReqDTO>
+    public class CreateUserValidator : AbstractValidator<RegisterReqDto>
     {
-        public LoginUserValiddator() {
+        public CreateUserValidator()
+        {
             RuleFor(x => x.Email)
-                    .NotEmpty()
-                    .WithMessage("Username is required.")
-                    .Length(3, 20)
-                    .WithMessage("Username must be between 3 and 20 characters long.");
+                .NotEmpty()
+                .WithMessage("Username is required.")
+                .Length(3, 20)
+                .WithMessage("Username must be between 3 and 20 characters long.");
 
             RuleFor(x => x.Email)
                 .NotEmpty()
@@ -27,8 +29,6 @@ namespace FitNation.Core.Validators
                 .MinimumLength(6)
                 .WithMessage("Password must be at least 6 characters long.");
         }
-
     }
-
-    }
+  
 }

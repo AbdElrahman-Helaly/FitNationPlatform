@@ -1,14 +1,10 @@
-﻿
-using FitNation.Core.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
+using FitNation.Core.Entities.Models;
 
-using FitNation.Core.Interfaces.Services;
-using FitNation.Core.Models;
-using FitNation.Core.Interfaces.Services;
-using FitNation.Core.DTOS;
+
 
 
 

@@ -19,11 +19,11 @@
   </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\FitNation.Core\FitNation.Core.csproj" />
-		<ProjectReference Include="..\Services\FitNation.Services.csproj" />
 	</ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <Folder Include="Migration\" />
+    <Folder Include="Repositories\NewFolder\" />
   </ItemGroup>
 
 </Project>

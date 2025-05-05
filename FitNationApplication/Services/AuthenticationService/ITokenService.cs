@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FitNation.Core.Interfaces.Services
+namespace FitNationApplication.Services.AuthenthicationService
 {
     public interface ITokenService
     {

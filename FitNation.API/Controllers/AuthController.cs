@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using FitNation.Core.Interfaces.Services;
-using FitNation.Core.DTOS;
-using FitNation.Core.Validators;
 using FluentValidation;
+using FitNationApplication.DTOS;
+using FitNationApplication.Validators;
+using FitNationApplication.Services.AuthenthicationService;
 
 
 namespace FitNation.API.Controllers

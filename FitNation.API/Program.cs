@@ -1,5 +1,4 @@
-using FitNation.Core.Interfaces.Services;
-using FitNation.Core.Settings;
+
 using FitNation.Infrastrucur.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -11,9 +10,11 @@ using Microsoft.OpenApi.Models;
 using AspNetCore.Scalar;
 using Scalar.AspNetCore;
 using FluentValidation;
-using FitNation.Core.DTOS;
-using FitNation.Core.Validators;
-using FitNation.Services.UserServices;
+using FitNationApplication.Services.AuthenthicationService;
+using FitNationApplication.DTOS;
+using FitNationApplication.Validators;
+using FitNation.Core.Settings;
+
 
 
 
@@ -40,8 +41,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.AddScoped<IAuthenServices, AuthenService>();
 
 
-builder.Services.AddScoped<IValidator<RegisterReqDto>, CreateUserValidator>();
-builder.Services.AddScoped<IValidator<LoginReqDTO>, LoginUserValiddator>();
+builder.Services.AddScoped<IValidator<RegisterReqDto>,CreateUserValidator>();
+builder.Services.AddScoped<IValidator<LoginReqDTO>,LoginUserValiddator>();
+
 
 
 

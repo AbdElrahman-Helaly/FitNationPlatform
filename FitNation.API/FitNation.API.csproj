@@ -27,7 +27,11 @@
   <ItemGroup>
     <ProjectReference Include="..\FitNation.Core\FitNation.Core.csproj" />
     <ProjectReference Include="..\FitNation.Infrastrucure\FitNation.Infrastrucure.csproj" />
-    <ProjectReference Include="..\Services\FitNation.Services.csproj" />
+    <ProjectReference Include="..\FitNationApplication\FitNationApplication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
   </ItemGroup>
 
 </Project>
